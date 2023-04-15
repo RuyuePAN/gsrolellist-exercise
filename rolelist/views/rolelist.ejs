@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>角色页面</title>
+    <link href="https://getbootstrap.com/docs/5.3/examples/cheatsheet/" rel="canonical">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/cheatsheet.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/pagination.js"></script>
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+      .btn-bd-primary {
+        --bd-violet-bg: #712cf9;
+        --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+        --bs-btn-font-weight: 600;
+        --bs-btn-color: var(--bs-white);
+        --bs-btn-bg: var(--bd-violet-bg);
+        --bs-btn-border-color: var(--bd-violet-bg);
+        --bs-btn-hover-color: var(--bs-white);
+        --bs-btn-hover-bg: #6528e0;
+        --bs-btn-hover-border-color: #6528e0;
+        --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+        --bs-btn-active-color: var(--bs-btn-hover-color);
+        --bs-btn-active-bg: #5a23c8;
+        --bs-btn-active-border-color: #5a23c8;
+      }
+
+      table {
+        table-layout: fixed;
+        white-space: nowrap;
+      }
+
+      td {
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      /* 火 */
+      .Pyro{
+        background-color: #ec0606;
+        color: aliceblue;
+      }
+      /* 风 */
+      .Anemo{
+        background-color: aquamarine;
+        color: aliceblue;
+      }
+      /* 雷 */
+      .Electro{
+        background-color: #712cf9;
+        color: aliceblue;
+      }
+      /* 水 */
+      .Hydro{
+        background-color: #0400ebc0;
+        color: aliceblue;
+      }
+      /* 草 */
+      .Dendro{
+        background-color: rgb(0, 255, 85);
+        color: aliceblue;
+      }
+      /* 岩 */
+      .Geo{
+        background-color: rgb(94, 70, 6);
+        color: aliceblue;
+      }
+      /* 冰 */
+      .Cryo{
+        background-color: aqua;
+        color: aliceblue;
+      }
+    </style>
+  </head>
+
+  <body class="bg-body-tertiary">
+    <header class="bd-header bg-dark py-3 d-flex align-items-stretch border-bottom border-dark">
+    <div class="container-fluid d-flex align-items-center">
+        <h1 class="d-flex align-items-center fs-4 text-white mb-0">
+        <img src="/images/yuanshi.jpg" width="38" height="30" class="me-3" alt="Bootstrap">
+        <a href="/roleadd" class="ms-auto link-light" hreflang="ar">添加角色</a>
+        </h1>
+        <a href="/logout" class="ms-auto link-light" hreflang="ar">退出</a>
+    </div>
+    </header>
+    <aside class="bd-aside sticky-xl-top text-body-secondary align-self-start mb-3 mb-xl-5 px-2">
+    </aside>
+    <div class="bd-cheatsheet container-fluid ">
+    <section id="content">
+        <!-- <h2 class="sticky-xl-top fw-bold pt-3 pt-xl-5 pb-2 pb-xl-3">角色列表</h2> -->
+
+        <article class="my-3" id="tables">
+        <div class="bd-heading sticky-xl-top align-self-start mt-5 mb-3 mt-xl-0 mb-xl-2">
+        </div>
+
+        <div>
+            <div class="bd-example-snippet bd-code-snippet"><div class="bd-example">
+            <br>
+            <br>
+            <br>
+            <table class="table table-hover">
+                <% roles.forEach(item => { %>
+                    <tr class="<%= item.element %>">
+                        <td colspan="5">
+                            <% for(var i = 1; i <= item.rarity; i++) { %>
+                              <img src="/images/rarity.svg" height="19"><img>
+                            <% } %>
+                        </td>
+                        <td><%= moment(item.date).format('YYYY-MM-DD') %></td>
+                    </tr>
+                    <tr class="">
+                        <td><%= item.rolename %></td>
+                        <td><%= item.country %></td>
+                        <td><img src="/images/<%= item.element %>.jpg" height="19" width=""></td>
+                        <td><%= item.weapon %></td>
+                        <td><%= item.remarks %></td>
+                        <td>
+                            <form>
+                              <a class="delBtn" href="/api/rolelist/<%= item._id %>" action:>删除</a>
+                          </form>
+                        </td>
+                        <!-- TODO：新增修改功能 -->
+                    </tr>
+                    <tr class="table-hover">
+                        <td colspan="6"></td>
+                    </tr>
+                <% }) %>
+
+            </table>
+            </div>
+        </div></div>
+        </article>
+    </section>
+
+    </div>
+
+
+
+
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/cheatsheet.js"></script>
+  </body>
+<script>
+    // 获取所有的delBtn
+    let delBtn = document.querySelectorAll('.delBtn');
+    
+    // 绑定事件
+    delBtn.forEach(item => {
+        item.addEventListener('click', function(e) {
+            if(confirm('真的要删除吗？')) {
+                return;
+            } else {
+                // 阻止默认行为
+                e.preventDefault();
+            }
+        });
+    });
+
+</script>
+</html>
