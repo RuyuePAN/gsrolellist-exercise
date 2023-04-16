@@ -3,7 +3,6 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
     <title>登录页面</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/checkout/">
@@ -11,8 +10,24 @@
 <link href="/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
-      .a-center {
-        text-align: center;
+        .a-center {
+            text-align: center;
+        }
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/images/bg01.jpg");
+            background-size: cover;
+        }
+        .col-12{
+            color: aliceblue;
+        }
+        h2 {
+            color: aliceblue;
+        }
+        .lead {
+            color: aliceblue;
+        }
+        .a-center {
+            color: aliceblue;
         }
     </style>
     <link href="/css/checkout.css" rel="stylesheet">
@@ -39,7 +54,7 @@
                 </div>
 
                 <div class="col-12">
-                <label for="password" class="form-label">密码<span class="text-body-secondary">（长度为 8~20 的字符）</span></label>
+                <label for="password" class="form-label">密码</label>
                 <input type="password" name="password" class="form-control" id="password" placeholder=" " required>
                 <div class="invalid-feedback">
                     密码不会被你忘了吧(#`O′)
@@ -66,9 +81,7 @@
     </footer>
     </div>
 
-
+    <script src="/js/checkout.js"></script>
     <script src="/js/bootstrap.bundle.min.js"></script>
-
-      <script src="/js/checkout.js"></script>
   </body>
 </html>

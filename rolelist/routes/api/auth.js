@@ -48,7 +48,7 @@ router.post('/login', (req, res) => {
             var json = {
                 msg:'用户名或密码错误',
                 data:null,
-                url:"/api/login"
+                url:"/login"
             };
             res.render("failure", json);
         }
@@ -57,7 +57,7 @@ router.post('/login', (req, res) => {
         res.json({
             msg:"登录失败",
             data:err,
-            url:"/api/login"
+            url:"/login"
         });
         console.log(err);
     });
